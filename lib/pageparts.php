@@ -412,7 +412,7 @@ function page_footer($saveuser=true){
 	//output version
 	$footer=str_replace("{version}", "Version: $logd_version", $footer);
 	//output page generation time
-	$genTime = round(getmicrotime()-$pagestarttime, 3);
+	$genTime = round(getmicrotime()-$pagestarttime, 2);
 	if (!getSessionUser('gentime')) {
 		$session['user']['gentimecount'] = 1;
 		$session['user']['gentime'] = 0;
@@ -421,14 +421,14 @@ function page_footer($saveuser=true){
 	$session['user']['gentime'] += $genTime;
 	$session['user']['gentimecount']++;
 	$queryTime = 0;
-	$genTime = round($session['user']['gentime'], 3);
-	$genCount = round($session['user']['gentimecount'], 3);
+	$totalGenTime = round($session['user']['gentime'], 1);
+	$genCount = $session['user']['gentimecount'];
 	if (isset($dbinfo['querytime'])) {
 		$queryTime = round($dbinfo['querytime'], 3);
 	}
-	$averageTime = round($genTime / $genCount, 3);
-	$avgLoad = "Ave: {$averageTime}s - {$genTime}/ {$genCount}";
-	$pageGen = "Page gen: {$genTime}s/{$dbinfo['queriesthishit']} queries ({$queryTime}s),";
+	$averageTime = round($totalGenTime / $genCount, 2);
+	$avgLoad = "PGA:{$averageTime}s | PGT:{$totalGenTime}s/{$genCount}c";
+	$pageGen = "PG:{$genTime}s | Q:{$dbinfo['queriesthishit']} | QT: {$queryTime}s | ";
 	$footer=str_replace('{pagegen}', "{$pageGen} {$avgLoad}", $footer);
     $footer=str_replace('{copyright}', "$copyright <br/> $lc", $footer);
 
