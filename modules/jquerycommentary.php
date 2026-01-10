@@ -137,7 +137,8 @@ function chatForm($section){
             'type' => 'textarea',
             'class' => 'input',
             'cols' => 60,
-            'rows' => 3
+            'rows' => 3,
+            'maxlength'=> 2500,
         ]
     );
     rawoutput(

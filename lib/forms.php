@@ -38,15 +38,9 @@ function previewfield($name, $startdiv=false, $talkline="says", $showcharsleft=t
 					}");
 	}
 	if ($showcharsleft == true) {
-/*		if (translate_inline($talkline,$schema)!="says")
-		$tll = strlen(translate_inline($talkline,$schema))+11;
-		else $tll=0;  // Don't know why needed
 		rawoutput("	if (x!=0) {
-						if (max.maxlength!=200-$tll) max.maxlength=200-$tll;
-						l=200-$tll; */ // Don't know why needed
-		rawoutput("	if (x!=0) {
-						if (max.maxLength!=200) max.maxLength=200;
-						l=200;
+						if (max.maxLength!=2500) max.maxLength=2500;
+						l=2500;
 					} else {
 						max.maxLength=l;
 					}
@@ -171,15 +165,15 @@ function previewfield($name, $startdiv=false, $talkline="says", $showcharsleft=t
 	}
 	if (!is_array($info)) {
 		if ($default) {
-			rawoutput("<input name='$name' id='input$name' maxlength='255' onKeyUp='previewtext$name(document.getElementById(\"input$name\").value,200);' value='$default'>");
+			rawoutput("<input name='$name' id='input$name' maxlength='255' onKeyUp='previewtext$name(document.getElementById(\"input$name\").value,2500);' value='$default'>");
 		} else {
-			rawoutput("<input name='$name' id='input$name' maxlength='255' onKeyUp='previewtext$name(document.getElementById(\"input$name\").value,200);'>");
+			rawoutput("<input name='$name' id='input$name' maxlength='255' onKeyUp='previewtext$name(document.getElementById(\"input$name\").value,2500);'>");
 		}
 	} else {
 		if (isset($info['maxlength'])) {
 			$l = $info['maxlength'];
 		} else {
-			$l=200;
+			$l=2500;
 		}
 		if (isset($info['type']) && $info['type'] == 'textarea') {
 			rawoutput("<textarea name='$name' id='input$name' onKeyUp='previewtext$name(document.getElementById(\"input$name\").value,$l);' ");

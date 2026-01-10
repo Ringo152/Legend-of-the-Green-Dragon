@@ -606,7 +606,13 @@ function talkform($section,$talkline,$limit=10,$schema=false){
 	}
 	addnav("",$req);
 	output_notl("<form action=\"$req\" method='POST' autocomplete='false'>",true);
-	previewfield("insertcommentary", $session['user']['name'], $talkline, true, array("size"=>"40", "maxlength"=>200-$tll));
+	previewfield(
+        'insertcommentary',
+        $session['user']['name'],
+        $talkline,
+        true,
+        ['size'=>'40', 'maxlength' => 2500 - $tll]
+    );
 	rawoutput("<input type='hidden' name='talkline' value='$talkline'>");
 	rawoutput("<input type='hidden' name='schema' value='$schema'>");
 	rawoutput("<input type='hidden' name='counter' value='{$session['counter']}'>");

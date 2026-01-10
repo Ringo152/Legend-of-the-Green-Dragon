@@ -565,7 +565,7 @@ return array(
 			'name'=>'author', 'type'=>'int(11) unsigned', 'default'=>'0'
 			),
 		'comment'=>array(
-			'name'=>'comment', 'type'=>'varchar(200)'
+			'name'=>'comment', 'type'=>'text'
 			),
 		'postdate'=>array(
 			'name'=>'postdate',
