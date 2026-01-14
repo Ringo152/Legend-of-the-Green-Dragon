@@ -94,10 +94,11 @@ function popup($page,$size="550x300"){
  *
  */
 function page_footer($saveuser=true){
-	global $output,$nestedtags,$header,$nav,$session,$REMOTE_ADDR,
-		$REQUEST_URI,$pagestarttime,$quickkeys,$template,$y2,$z2,
-		$logd_version,$copyright,$SCRIPT_NAME,$nopopups, $footer,
-		$dbinfo,$lc;
+	global $output, $nestedtags, $header, $nav, $session, $REMOTE_ADDR,
+		$REQUEST_URI, $pagestarttime, $quickkeys, $template, $y2, $z2,
+		$logd_version, $copyright, $SCRIPT_NAME, $nopopups, $footer,
+		$dbinfo, $lc, $i18nNamespace, $TRANSLATION_CACHE;
+
 	$z = $y2^$z2;
 	$footer = $template['footer'];
 	//page footer module hooks
@@ -909,4 +910,3 @@ function motdlink(){
 		return "<a href='motd.php' target='_blank' onClick=\"".popup("motd.php").";return false;\" class='motd'><b>".translate_inline("MoTD")."</b></a>";
 	}
 }
-?>
