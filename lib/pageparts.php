@@ -857,24 +857,26 @@ function charstats(){
  * @see Templates
  * @todo Template Help
  */
-function loadtemplate($templatename){
-	if ($templatename=="" || !file_exists("templates/$templatename") || substr($templatename, -4) != '.htm')
-		$templatename=getsetting("defaultskin", "jade.htm");
-	if ($templatename=="" || !file_exists("templates/$templatename"))
-		$templatename="jade.htm";
-	$fulltemplate = file_get_contents("templates/$templatename");
-	$fulltemplate = explode("<!--!",$fulltemplate);
-	foreach ($fulltemplate as $key => $val) {
-		$fieldname=substr($val,0,strpos($val,"-->"));
-		if ($fieldname!=""){
-			$template[$fieldname]=substr($val,strpos($val,"-->")+3);
+function loadtemplate($themeName){
+	if ($themeName == '' || !file_exists("templates/$themeName") || substr($themeName, -4) != '.htm')
+		$themeName = getsetting('defaultskin', 'jade.htm');
+	if ($themeName == '' || !file_exists("templates/$themeName"))
+		$themeName = 'jade.htm';
+	$fullTemplate = file_get_contents("templates/$themeName");
+	$fullTemplate = explode('<!--!', $fullTemplate);
+	foreach ($fullTemplate as $key => $val) {
+		$fieldname = substr($val, 0, strpos($val, '-->'));
+		if ($fieldname != '') {
+			$theme[$fieldname] = substr($val, strpos($val, '-->') + 3);
 			if (file_exists('dbconnect.php') && (!defined('IS_INSTALLER') || !IS_INSTALLER)) {
-				modulehook("template-{$fieldname}",
-					array("content"=>$template[$fieldname]));
+				modulehook(
+                    "theme-{$fieldname}",
+					["content"=>$theme[$fieldname]]
+                );
 			}
 		}
 	}
-	return $template;
+	return $theme;
 }
 
 /**
