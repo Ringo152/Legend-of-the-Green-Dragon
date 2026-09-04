@@ -60,7 +60,6 @@ else {
 		`^LICENSE.txt has been modified. This file cannot be tampered with. 
 		Expected MD5 of a192586931e44a73b118c3ff96a45c27, received $licenseHash.`0
 	");
-	$stage = -1;
-	$session['stagecompleted'] = -1;
+	
 }
 ?>
